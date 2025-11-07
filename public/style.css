@@ -1,12 +1,12 @@
-/* General Page Setup */
+/* General Page Setup — Dark */
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f7f7f7;
-  color: #222;
+  background: #000;          /* black background */
+  color: #e6e6e6;            /* light text */
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* makes sure the footer stays at the bottom */
+  min-height: 100vh;         /* keep footer/links at bottom */
 }
 
 /* Center main page content (if you use <main>) */
@@ -16,64 +16,82 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 1rem;
 }
 
-/* Regular top navigation (Home, AI Chat, etc.) */
+/* Logo — scaled up, minimal gap below */
+.logo {
+  display: block;
+  width: 480px;              /* adjust as needed */
+  max-width: 90vw;
+  height: auto;              /* preserve aspect ratio */
+  margin: 0 auto 0.25rem;    /* tighter space under logo */
+}
+
+/* Reduce heading margins near the logo */
+main h1 {
+  margin: 0.25rem 0 0.75rem; /* small gap above, modest below */
+  line-height: 1.15;
+}
+
+/* Links — AIvy green */
+a {
+  color: #8fd19e;            /* ivy green */
+  text-decoration: none;
+}
+a:hover { color: #b7e8c3; }
+a:focus-visible {
+  outline: 2px solid #1e6a50;
+  outline-offset: 2px;
+}
+
+/* Top navigation (Home, AI Chat, etc.) */
 .top-links {
   margin: 15px;
-}
-
-.top-links a {
-  text-decoration: none;
-  color: #0077ff;
-  margin-right: 10px;
   font-size: 18px;
 }
-
-.top-links a:hover {
-  text-decoration: underline;
-  color: #0055aa;
-}
+.top-links a { margin-right: 10px; }
 
 /* Bottom-left links (About, Contact) */
 .bottom-left-links {
-  position: fixed;   /* sticks to the screen */
-  bottom: 10px;      /* distance from the bottom edge */
-  left: 15px;        /* distance from the left edge */
+  position: fixed;
+  bottom: 10px;
+  left: 15px;
   font-size: 16px;
 }
+.bottom-left-links a { margin-right: 10px; }
 
-.bottom-left-links a {
-  text-decoration: none;
-  color: #0077ff;
-  margin-right: 10px;
-}
-
-.bottom-left-links a:hover {
-  text-decoration: underline;
-  color: #0055aa;
-}
-
-/* Buttons (like your Send button) */
+/* Buttons */
 button {
-  background-color: #0077ff;
-  color: white;
-  border: none;
+  background: #0f3d2e;       /* deep green */
+  color: #e6e6e6;
+  border: 1px solid #1e6a50;
   padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
+  transition: background 0.15s ease, transform 0.02s ease;
+}
+button:hover { background: #165340; }
+button:active { transform: translateY(1px); }
+button:focus-visible {
+  outline: 2px solid #2ea97b;
+  outline-offset: 2px;
 }
 
-button:hover {
-  background-color: #0055aa;
-}
-
-/* Input box styling */
+/* Inputs */
 input[type="text"] {
   padding: 8px;
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  background: #111;          /* dark field */
+  color: #e6e6e6;
+  border: 1px solid #2a2a2a;
+  border-radius: 6px;
   width: 300px;
+}
+input[type="text"]::placeholder { color: #9aa3a3; }
+input[type="text"]:focus {
+  outline: none;
+  border-color: #1e6a50;     /* green focus */
+  box-shadow: 0 0 0 3px rgba(30,106,80,0.25);
 }
