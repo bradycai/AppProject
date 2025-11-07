@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Hello World Example</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Text Box</title>
   </head>
+
   <body>
-    <h1 id="message"></h1>
+    <h1>DeepGPT</h1>
+
+    <!-- Text input box -->
+    <input
+      type="text"
+      id="userInput"
+      placeholder="Type here..."
+      style="width: 300px; padding: 8px; font-size: 16px;"
+    />
+
+    <!-- Submit button -->
+    <button id="submitBtn" style="padding: 8px 12px; font-size: 16px;">Send</button>
+
+    <!-- Where we’ll show the response -->
+    <p id="response"></p>
 
     <script src="script.js"></script>
   </body>
