@@ -1,12 +1,14 @@
-// Wait until the page loads
+// Wait for the page to load
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("userInput");
-  const button = document.getElementById("submitBtn");
+  const sendBtn = document.getElementById("sendBtn");
   const response = document.getElementById("response");
 
-  // When button is clicked
-  button.addEventListener("click", () => {
-    const userText = input.value; // get what they typed
-    response.textContent = `You typed: ${userText}`;
-  });
+  if (sendBtn) {
+    sendBtn.addEventListener("click", () => {
+      const userText = input.value;
+      response.textContent = `You said: ${userText}`;
+      input.value = ""; // clear the text box
+    });
+  }
 });

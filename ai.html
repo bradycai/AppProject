@@ -3,28 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Project - Home</title>
+    <title>AI Chat</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <!-- Top navigation -->
     <div class="top-links">
       <a href="index.html">Home</a> |
       <a href="ai.html">AI Chat</a>
     </div>
 
-    <!-- Main centered section -->
     <main>
-      <h1>Welcome to Our AI Project</h1>
-      <p>
-        This is our website for the AI project. Click below to start chatting with the AI or learn more about us.
-      </p>
-
-      <button onclick="window.location.href='ai.html'">Try the AI Chat</button>
+      <h1>Talk to the AI</h1>
+      <input type="text" id="userInput" placeholder="Type your message..." />
+      <button id="sendBtn">Send</button>
+      <p id="response"></p>
     </main>
 
-    <!-- Bottom-left links -->
     <div class="bottom-left-links">
       <a href="about.html">About</a> |
       <a href="contact.html">Contact</a>
