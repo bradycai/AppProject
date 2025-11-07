@@ -1,15 +1,25 @@
-/* General Page Setup — Dark */
+/* --------------------------- */
+/* Global Page Setup           */
+/* --------------------------- */
+html, body {
+  height: auto;
+  overflow-y: auto; /* vertical scrolling */
+  overflow-x: hidden; /* No side scrolling */
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #000;          /* black background */
-  color: #e6e6e6;            /* light text */
+  background: #1a1a1a;
+  color: #e6e6e6;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;         /* keep footer/links at bottom */
+  min-height: 100vh;
 }
 
-/* Center main page content (if you use <main>) */
+/* --------------------------- */
+/* Main Content Centering      */
+/* --------------------------- */
 main {
   flex: 1;
   display: flex;
@@ -19,24 +29,42 @@ main {
   padding: 0 1rem;
 }
 
-/* Logo — scaled up, minimal gap below */
+/* --------------------------- */
+/* Logo Styling                */
+/* --------------------------- */
 .logo {
   display: block;
-  width: 480px;              /* adjust as needed */
+  width: 480px;
   max-width: 90vw;
-  height: auto;              /* preserve aspect ratio */
-  margin: 0 auto 0.25rem;    /* tighter space under logo */
+  height: auto;
+  margin: 0 auto 0.25rem;
 }
 
-/* Reduce heading margins near the logo */
+/* --------------------------- */
+/* Headings & Text             */
+/* --------------------------- */
 main h1 {
-  margin: 0.25rem 0 0.75rem; /* small gap above, modest below */
+  margin: 0.25rem 0 0.75rem;
   line-height: 1.15;
+  color: #b7e8c3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Links — AIvy green */
+main p {
+  font-size: 18px;
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.6;
+  margin: 0 auto;
+  color: #ddd;
+}
+
+/* --------------------------- */
+/* Navigation Links            */
+/* --------------------------- */
 a {
-  color: #8fd19e;            /* ivy green */
+  color: #8fd19e;
   text-decoration: none;
 }
 a:hover { color: #b7e8c3; }
@@ -50,7 +78,9 @@ a:focus-visible {
   margin: 15px;
   font-size: 18px;
 }
-.top-links a { margin-right: 10px; }
+.top-links a {
+  margin-right: 10px;
+}
 
 /* Bottom-left links (About, Contact) */
 .bottom-left-links {
@@ -59,11 +89,15 @@ a:focus-visible {
   left: 15px;
   font-size: 16px;
 }
-.bottom-left-links a { margin-right: 10px; }
+.bottom-left-links a {
+  margin-right: 10px;
+}
 
-/* Buttons */
+/* --------------------------- */
+/* Buttons                     */
+/* --------------------------- */
 button {
-  background: #0f3d2e;       /* deep green */
+  background: #0f3d2e;
   color: #e6e6e6;
   border: 1px solid #1e6a50;
   padding: 10px 15px;
@@ -72,26 +106,79 @@ button {
   font-size: 16px;
   transition: background 0.15s ease, transform 0.02s ease;
 }
-button:hover { background: #165340; }
-button:active { transform: translateY(1px); }
+button:hover {
+  background: #165340;
+}
+button:active {
+  transform: translateY(1px);
+}
 button:focus-visible {
   outline: 2px solid #2ea97b;
   outline-offset: 2px;
 }
 
-/* Inputs */
+/* --------------------------- */
+/* Input Boxes                 */
+/* --------------------------- */
 input[type="text"] {
   padding: 8px;
   font-size: 16px;
-  background: #111;          /* dark field */
+  background: #333;
   color: #e6e6e6;
   border: 1px solid #2a2a2a;
   border-radius: 6px;
   width: 300px;
 }
-input[type="text"]::placeholder { color: #9aa3a3; }
+input[type="text"]::placeholder {
+  color: #9aa3a3;
+}
 input[type="text"]:focus {
   outline: none;
-  border-color: #1e6a50;     /* green focus */
+  border-color: #1e6a50;
   box-shadow: 0 0 0 3px rgba(30,106,80,0.25);
+}
+
+/* --------------------------- */
+/* Page Animations             */
+/* --------------------------- */
+main {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------- */
+/* Email Link Styling          */
+/* --------------------------- */
+main a[href^="mailto:"] {
+  color: #8fd19e;
+  font-weight: bold;
+  text-decoration: underline;
+}
+main a[href^="mailto:"]:hover {
+  color: #b7e8c3;
+}
+
+/* --------------------------- */
+/* AI Chat Input Layout        */
+/* --------------------------- */
+.chat-input {
+  display: flex;
+  gap: 10px; /* space between box and button */
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.chat-input input[type="text"] {
+  width: 280px; /* slightly smaller to fit beside button */
 }
