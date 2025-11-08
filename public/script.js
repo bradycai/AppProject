@@ -7,21 +7,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const sendBtn = document.getElementById("sendBtn");
   const responseEl = document.getElementById("response");
 
-  // Handle "Send" button click
-  sendBtn.addEventListener("click", () => {
-    const userText = input.value.trim();
+  if (input && sendBtn && responseEl) {
+    sendBtn.addEventListener("click", () => {
+      const userText = input.value.trim();
 
-    if (userText !== "") {
-      response.textContent = `You said: ${userText}`;
-      input.value = "";
-    }
-  });
+      if (userText !== "") {
+        responseEl.textContent = `You said: ${userText}`;
+        input.value = "";
+      }
+    });
 
-  // Allow pressing Enter to send
-  input.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      sendBtn.click();
+    // Allow pressing Enter to send
+    input.addEventListener("keypress", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        sendBtn.click();
+      }
+    });
+  }
+
+  /* ---------------------------
+     Sidebar Logic
+  --------------------------- */
+  const menuBtn = document.getElementById("menuBtn");
+  const sidebar = document.getElementById("sidebar");
+
+  if (menuBtn && sidebar) {
+    // Restore saved sidebar state
+    const savedState = localStorage.getItem("sidebarOpen");
+    if (savedState === "true") {
+      sidebar.classList.add("open");
     }
-  });
+
+    // Toggle sidebar open/close
+    menuBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      localStorage.setItem("sidebarOpen", sidebar.classList.contains("open"));
+    });
+  }
 });

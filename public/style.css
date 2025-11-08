@@ -3,8 +3,8 @@
 /* --------------------------- */
 html, body {
   height: auto;
-  overflow-y: auto; /* vertical scrolling */
-  overflow-x: hidden; /* No side scrolling */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 body {
@@ -61,7 +61,7 @@ main p {
 }
 
 /* --------------------------- */
-/* Navigation Links            */
+/* Links                       */
 /* --------------------------- */
 a {
   color: #8fd19e;
@@ -71,26 +71,6 @@ a:hover { color: #b7e8c3; }
 a:focus-visible {
   outline: 2px solid #1e6a50;
   outline-offset: 2px;
-}
-
-/* Top navigation (Home, AI Chat, etc.) */
-.top-links {
-  margin: 15px;
-  font-size: 18px;
-}
-.top-links a {
-  margin-right: 10px;
-}
-
-/* Bottom-left links (About, Contact) */
-.bottom-left-links {
-  position: fixed;
-  bottom: 10px;
-  left: 15px;
-  font-size: 16px;
-}
-.bottom-left-links a {
-  margin-right: 10px;
 }
 
 /* --------------------------- */
@@ -106,12 +86,8 @@ button {
   font-size: 16px;
   transition: background 0.15s ease, transform 0.02s ease;
 }
-button:hover {
-  background: #165340;
-}
-button:active {
-  transform: translateY(1px);
-}
+button:hover { background: #165340; }
+button:active { transform: translateY(1px); }
 button:focus-visible {
   outline: 2px solid #2ea97b;
   outline-offset: 2px;
@@ -129,9 +105,7 @@ input[type="text"] {
   border-radius: 6px;
   width: 300px;
 }
-input[type="text"]::placeholder {
-  color: #9aa3a3;
-}
+input[type="text"]::placeholder { color: #9aa3a3; }
 input[type="text"]:focus {
   outline: none;
   border-color: #1e6a50;
@@ -144,16 +118,9 @@ input[type="text"]:focus {
 main {
   animation: fadeIn 0.6s ease-in-out;
 }
-
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* --------------------------- */
@@ -164,23 +131,20 @@ main a[href^="mailto:"] {
   font-weight: bold;
   text-decoration: underline;
 }
-main a[href^="mailto:"]:hover {
-  color: #b7e8c3;
-}
+main a[href^="mailto:"]:hover { color: #b7e8c3; }
 
 /* --------------------------- */
 /* AI Chat Input Layout        */
 /* --------------------------- */
 .chat-input {
   display: flex;
-  gap: 10px; /* space between box and button */
+  gap: 10px;
   align-items: center;
   justify-content: center;
   margin-top: 10px;
 }
-
 .chat-input input[type="text"] {
-  width: 280px; /* slightly smaller to fit beside button */
+  width: 280px;
 }
 
 /* --------------------------- */
@@ -240,26 +204,14 @@ main a[href^="mailto:"]:hover {
 /* Page Content Shift Effect   */
 /* --------------------------- */
 .page-content {
-  transition: margin-left 0.3s ease;
-  margin-left: 60px; /* same as closed sidebar width */
-}
-
-.sidebar.open + .page-content {
-  margin-left: 200px; /* same as open sidebar width */
-}
-
-/* --------------------------- */
-/* Center Page Content         */
-/* --------------------------- */
-.page-content {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   transition: margin-left 0.3s ease;
-  margin-left: 60px; /* default sidebar width */
+  margin-left: 60px;
 }
 
 .sidebar.open + .page-content {
-  margin-left: 200px; /* expanded sidebar width */
+  margin-left: 200px;
 }
