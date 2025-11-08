@@ -182,3 +182,84 @@ main a[href^="mailto:"]:hover {
 .chat-input input[type="text"] {
   width: 280px; /* slightly smaller to fit beside button */
 }
+
+/* --------------------------- */
+/* Sidebar Styles              */
+/* --------------------------- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 60px;
+  background-color: #111;
+  transition: width 0.3s ease;
+  overflow-x: hidden;
+  z-index: 10;
+}
+
+.sidebar.open {
+  width: 200px;
+}
+
+.menu-btn {
+  color: #fff;
+  font-size: 28px;
+  text-align: center;
+  padding: 15px 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.open .sidebar-content {
+  opacity: 1;
+}
+
+.sidebar-content a {
+  padding: 15px 20px;
+  color: #8fd19e;
+  text-decoration: none;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.sidebar-content a:hover {
+  background-color: #1e1e1e;
+  color: #b7e8c3;
+}
+
+/* --------------------------- */
+/* Page Content Shift Effect   */
+/* --------------------------- */
+.page-content {
+  transition: margin-left 0.3s ease;
+  margin-left: 60px; /* same as closed sidebar width */
+}
+
+.sidebar.open + .page-content {
+  margin-left: 200px; /* same as open sidebar width */
+}
+
+/* --------------------------- */
+/* Center Page Content         */
+/* --------------------------- */
+.page-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: margin-left 0.3s ease;
+  margin-left: 60px; /* default sidebar width */
+}
+
+.sidebar.open + .page-content {
+  margin-left: 200px; /* expanded sidebar width */
+}

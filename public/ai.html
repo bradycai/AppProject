@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Chat</title>
+    <title>AI Chat - AIVY</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+<<<<<<< HEAD
     <div class="top-links">
       <a href="index.html">Home</a> | <a href="ai.html" aria-current="page">AI Chat</a>
     </div>
@@ -22,6 +23,31 @@
 
     <div class="bottom-left-links">
       <a href="about.html">About</a> | <a href="contact.html">Contact</a>
+=======
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="menu-btn" id="menuBtn">&#9776;</div>
+      <div class="sidebar-content">
+        <a href="index.html">🏠 Home</a>
+        <a href="ai.html">🤖 AI Chat</a>
+        <a href="about.html">ℹ️ About</a>
+        <a href="contact.html">📬 Contact</a>
+      </div>
+    </div>
+
+    <!-- Centered Page Content -->
+    <div class="page-content" id="pageContent">
+      <main>
+        <h1>Talk to the AI</h1>
+
+        <div class="chat-input">
+          <input type="text" id="userInput" placeholder="Type your message..." />
+          <button id="sendBtn">Send</button>
+        </div>
+
+        <div id="chatBox" class="chat-box"></div>
+      </main>
+>>>>>>> 36c4ea7 (Added Side-bar)
     </div>
 
     <!-- just add defer so the DOM exists before script runs -->

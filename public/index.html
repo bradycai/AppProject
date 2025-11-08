@@ -8,37 +8,34 @@
   </head>
 
   <body>
-    <!-- Top navigation -->
-    <div class="top-links">
-      <a href="index.html">Home</a> |
-      <a href="ai.html">AI Chat</a>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="menu-btn" id="menuBtn">&#9776;</div>
+      <div class="sidebar-content">
+        <a href="index.html">🏠 Home</a>
+        <a href="ai.html">🤖 AI Chat</a>
+        <a href="about.html">ℹ️ About</a>
+        <a href="contact.html">📬 Contact</a>
+      </div>
     </div>
 
-    <!-- Logo image -->
-    <!-- edit the number after 'logo' to change selected logo for testing -->
-    <img
-    src="images/aivy-logo4.png"
-    alt="AIvy logo"
-    class="logo"
-    width="256"
-    height="256"
-    loading="lazy"
-    decoding="async"
-    />
-    <!-- Main centered section -->
-    <main>
-      <h1>Welcome to AIVY</h1>
-      <p>
-        Click below to start chatting with the AI or learn more about us.
-      </p>
+    <!-- Page Content (moves when sidebar opens) -->
+    <div class="page-content" id="pageContent">
+      <img
+        src="images/aivy-logo4.png"
+        alt="AIvy logo"
+        class="logo"
+        width="256"
+        height="256"
+        loading="lazy"
+        decoding="async"
+      />
 
-      <button onclick="window.location.href='ai.html'">Try the AI Chat</button>
-    </main>
-
-    <!-- Bottom-left links -->
-    <div class="bottom-left-links">
-      <a href="about.html">About</a> |
-      <a href="contact.html">Contact</a>
+      <main>
+        <h1>Welcome to AIVY</h1>
+        <p>Click below to start chatting with the AI or learn more about us.</p>
+        <button onclick="window.location.href='ai.html'">Try the AI Chat</button>
+      </main>
     </div>
 
     <script src="script.js"></script>
