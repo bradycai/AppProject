@@ -1,12 +1,29 @@
-// server.js
+// src/server.js
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+import path from "path";
+import { fileURLToPath } from "url";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+// --- only needed to resolve ../public in ESM ---
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
+
+// If front-end is served by this same server, CORS is optional.
+// You can leave it on; it won't hurt.
 app.use(cors());
 app.use(express.json());
+
+// NEW: serve your static frontend from /public (sibling of /src)
+app.use(express.static(path.join(__dirname, "..", "public")));
+
+// Optional: quick check for missing key (helps avoid silent 500s)
+if (!process.env.GEMINI_API_KEY) {
+  console.warn("Warning: GEMINI_API_KEY is not set in .env");
+}
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
@@ -15,16 +32,13 @@ app.post("/api/chat", async (req, res) => {
   try {
     const { messages, model = "gemini-2.0-flash", temperature = 0.3 } = req.body;
 
-    // messages = [{role:"user"|"model"|"system", content:"..."}]
     const modelHandle = genAI.getGenerativeModel({ model });
-
-    // Convert simple chat array -> one prompt for Flash/Pro
-
-    // flash runs fast but pro is better for detailed response (prioritize using flash first)
-    const prompt = messages.map(m => `${m.role.toUpperCase()}: ${m.content}`).join("\n");
+    const prompt = (messages || [])
+      .map(m => `${(m.role || "user").toUpperCase()}: ${m.content || ""}`)
+      .join("\n");
 
     const result = await modelHandle.generateContent({
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
+      contents: [{ role: "user", parts: [{ text: prompt || "Hello!" }] }],
       generationConfig: { temperature },
     });
 
@@ -53,15 +67,12 @@ app.post("/api/chat/stream", async (req, res) => {
       generationConfig: { temperature },
     });
 
-    // Server sent events (SSE) headers for chunks
-    // real time updates from the model to the program
     res.writeHead(200, {
       "Content-Type": "text/event-stream",
       "Cache-Control": "no-cache",
       Connection: "keep-alive",
     });
 
-    // send message chunks as they arrive (like ChatGPT typewriter animation)
     for await (const chunk of stream.stream) {
       const text = chunk.text();
       res.write(`data: ${JSON.stringify({ text })}\n\n`);
@@ -75,4 +86,7 @@ app.post("/api/chat/stream", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 8787;
-app.listen(PORT, () => console.log(`API on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`App running at http://localhost:${PORT}`);
+  console.log(`Open http://localhost:${PORT}/ai.html`);
+});
