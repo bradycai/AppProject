@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
   --------------------------- */
   const input = document.getElementById("userInput");
   const sendBtn = document.getElementById("sendBtn");
-  const responseEl = document.getElementById("response");
+  const response = document.getElementById("response");
 
+<<<<<<< HEAD
   if (input && sendBtn && responseEl) {
     sendBtn.addEventListener("click", () => {
       const userText = input.value.trim();
@@ -37,6 +38,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedState = localStorage.getItem("sidebarOpen");
     if (savedState === "true") {
       sidebar.classList.add("open");
+=======
+  // Handle "Send" button click
+  sendBtn.addEventListener("click", () => {
+    const userText = input.value.trim();
+
+    if (userText !== "") {
+      response.textContent = `You said: ${userText}`;
+      input.value = "";
+    }
+  });
+
+  // Allow pressing Enter to send
+  input.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      sendBtn.click();
+>>>>>>> parent of 28416a6 (ai functionality)
     }
 
     // Toggle sidebar open/close
