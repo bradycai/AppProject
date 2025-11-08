@@ -15,7 +15,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": { "url": "https://github.com/bradycai/AppProject/issues" },
+  "bugs": {
+    "url": "https://github.com/bradycai/AppProject/issues"
+  },
   "homepage": "https://github.com/bradycai/AppProject#readme",
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
