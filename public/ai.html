@@ -8,15 +8,12 @@
   </head>
 
   <body>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
       <div class="menu-btn" id="menuBtn">&#9776;</div>
       <div class="sidebar-content">
         <a href="index.html">🏠 Home</a>
-        <a href="ai.html">🤖 AI Chat</a>
+        <a href="ai.html" aria-current="page">🤖 AI Chat</a>
         <a href="about.html">ℹ️ About</a>
         <a href="contact.html">📬 Contact</a>
       </div>
@@ -38,56 +35,82 @@
       </main>
     </div>
 
-    <script src="script.js" defer></script>
-=======
-    <!-- Top navigation -->
-    <div class="top-links">
-      <a href="index.html">Home</a> |
-      <a href="ai.html">AI Chat</a>
-    </div>
+    <!-- JavaScript -->
+    <script defer>
+      document.addEventListener("DOMContentLoaded", () => {
+        const input = document.getElementById("userInput");
+        const sendBtn = document.getElementById("sendBtn");
+        const chatBox = document.getElementById("chatBox");
 
-=======
-    <!-- Top navigation -->
-    <div class="top-links">
-      <a href="index.html">Home</a> |
-      <a href="ai.html">AI Chat</a>
-    </div>
+        // Helper function to append messages
+        const addMessage = (text, sender) => {
+          const msg = document.createElement("div");
+          msg.classList.add("message", sender);
+          msg.textContent = text;
+          chatBox.appendChild(msg);
+          chatBox.scrollTop = chatBox.scrollHeight;
+        };
 
->>>>>>> parent of 28416a6 (ai functionality)
-=======
-    <!-- Top navigation -->
-    <div class="top-links">
-      <a href="index.html">Home</a> |
-      <a href="ai.html">AI Chat</a>
-    </div>
+        // Send button logic (calls backend)
+        sendBtn.addEventListener("click", async () => {
+          const userText = input.value.trim();
+          if (!userText) return;
 
->>>>>>> parent of 28416a6 (ai functionality)
-    <!-- Main chat area -->
-    <main>
-      <h1>Talk to the AI</h1>
+          addMessage(userText, "user");
+          input.value = "";
 
-      <!-- Input and button side by side -->
-      <div class="chat-input">
-        <input type="text" id="userInput" placeholder="Type your message..." />
-        <button id="sendBtn">Send</button>
-      </div>
+          // Placeholder message while waiting for AI response
+          const thinkingMsg = document.createElement("div");
+          thinkingMsg.classList.add("message", "ai");
+          thinkingMsg.textContent = "Thinking...";
+          chatBox.appendChild(thinkingMsg);
+          chatBox.scrollTop = chatBox.scrollHeight;
 
-      <p id="response"></p>
-    </main>
+          try {
+            const res = await fetch("/api/chat", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                messages: [{ role: "user", content: userText }],
+              }),
+            });
 
-    <!-- Bottom-left links -->
-    <div class="bottom-left-links">
-      <a href="about.html">About</a> |
-      <a href="contact.html">Contact</a>
-    </div>
+            const data = await res.json();
+            if (data.text) {
+              thinkingMsg.textContent = data.text;
+            } else {
+              thinkingMsg.textContent = "⚠️ No response from AI.";
+            }
+          } catch (err) {
+            console.error("Error contacting AI:", err);
+            thinkingMsg.textContent = "⚠️ Error connecting to AI server.";
+          }
+        });
 
-    <script src="script.js"></script>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 28416a6 (ai functionality)
-=======
->>>>>>> parent of 28416a6 (ai functionality)
-=======
->>>>>>> parent of 28416a6 (ai functionality)
+        // Allow pressing Enter to send
+        input.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            sendBtn.click();
+          }
+        });
+
+        /* ---------------------------
+           Sidebar Persistence
+        --------------------------- */
+        const menuBtn = document.getElementById("menuBtn");
+        const sidebar = document.getElementById("sidebar");
+
+        // Restore sidebar state
+        const savedState = localStorage.getItem("sidebarOpen");
+        if (savedState === "true") sidebar.classList.add("open");
+
+        // Toggle open/close
+        menuBtn.addEventListener("click", () => {
+          sidebar.classList.toggle("open");
+          localStorage.setItem("sidebarOpen", sidebar.classList.contains("open"));
+        });
+      });
+    </script>
   </body>
 </html>
