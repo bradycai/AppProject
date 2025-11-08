@@ -20,15 +20,15 @@
     </div>
 
     <!-- Page Content -->
-    <div class="page-content" id="pageContent">
+    <div class="page-content chat-layout" id="pageContent">
       <main>
-        <h1>Talk to the AI</h1>
+        <h1 id="chatTitle">Talk to the AI</h1>
 
         <!-- Chat history box -->
         <div id="chatBox" class="chat-box"></div>
 
-        <!-- Input + Send button -->
-        <div class="chat-input">
+        <!-- Input + Send button (bottom fixed) -->
+        <div class="chat-input fixed">
           <input type="text" id="userInput" placeholder="Type your message..." />
           <button id="sendBtn">Send</button>
         </div>
@@ -41,6 +41,7 @@
         const input = document.getElementById("userInput");
         const sendBtn = document.getElementById("sendBtn");
         const chatBox = document.getElementById("chatBox");
+        const chatTitle = document.getElementById("chatTitle");
 
         // Helper function to append messages
         const addMessage = (text, sender) => {
@@ -56,10 +57,10 @@
           const userText = input.value.trim();
           if (!userText) return;
 
+          if (chatTitle) chatTitle.style.display = "none"; // Hide title after first message
           addMessage(userText, "user");
           input.value = "";
 
-          // Placeholder message while waiting for AI response
           const thinkingMsg = document.createElement("div");
           thinkingMsg.classList.add("message", "ai");
           thinkingMsg.textContent = "Thinking...";
@@ -76,18 +77,14 @@
             });
 
             const data = await res.json();
-            if (data.text) {
-              thinkingMsg.textContent = data.text;
-            } else {
-              thinkingMsg.textContent = "⚠️ No response from AI.";
-            }
+            thinkingMsg.textContent = data.text || "⚠️ No response from AI.";
           } catch (err) {
             console.error("Error contacting AI:", err);
             thinkingMsg.textContent = "⚠️ Error connecting to AI server.";
           }
         });
 
-        // Allow pressing Enter to send
+        // Press Enter to send
         input.addEventListener("keypress", (e) => {
           if (e.key === "Enter") {
             e.preventDefault();
@@ -95,20 +92,18 @@
           }
         });
 
-        /* ---------------------------
-           Sidebar Persistence
-        --------------------------- */
+        // Sidebar toggle persistence
         const menuBtn = document.getElementById("menuBtn");
         const sidebar = document.getElementById("sidebar");
-
-        // Restore sidebar state
         const savedState = localStorage.getItem("sidebarOpen");
         if (savedState === "true") sidebar.classList.add("open");
 
-        // Toggle open/close
         menuBtn.addEventListener("click", () => {
           sidebar.classList.toggle("open");
-          localStorage.setItem("sidebarOpen", sidebar.classList.contains("open"));
+          localStorage.setItem(
+            "sidebarOpen",
+            sidebar.classList.contains("open")
+          );
         });
       });
     </script>
