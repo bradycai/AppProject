@@ -61,19 +61,6 @@ main p {
 }
 
 /* --------------------------- */
-/* Links                       */
-/* --------------------------- */
-a {
-  color: #8fd19e;
-  text-decoration: none;
-}
-a:hover { color: #b7e8c3; }
-a:focus-visible {
-  outline: 2px solid #1e6a50;
-  outline-offset: 2px;
-}
-
-/* --------------------------- */
 /* Buttons                     */
 /* --------------------------- */
 button {
@@ -91,60 +78,6 @@ button:active { transform: translateY(1px); }
 button:focus-visible {
   outline: 2px solid #2ea97b;
   outline-offset: 2px;
-}
-
-/* --------------------------- */
-/* Input Boxes                 */
-/* --------------------------- */
-input[type="text"] {
-  padding: 8px;
-  font-size: 16px;
-  background: #333;
-  color: #e6e6e6;
-  border: 1px solid #2a2a2a;
-  border-radius: 6px;
-  width: 300px;
-}
-input[type="text"]::placeholder { color: #9aa3a3; }
-input[type="text"]:focus {
-  outline: none;
-  border-color: #1e6a50;
-  box-shadow: 0 0 0 3px rgba(30,106,80,0.25);
-}
-
-/* --------------------------- */
-/* Page Animations             */
-/* --------------------------- */
-main {
-  animation: fadeIn 0.6s ease-in-out;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* --------------------------- */
-/* Email Link Styling          */
-/* --------------------------- */
-main a[href^="mailto:"] {
-  color: #8fd19e;
-  font-weight: bold;
-  text-decoration: underline;
-}
-main a[href^="mailto:"]:hover { color: #b7e8c3; }
-
-/* --------------------------- */
-/* AI Chat Input Layout        */
-/* --------------------------- */
-.chat-input {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-}
-.chat-input input[type="text"] {
-  width: 280px;
 }
 
 /* --------------------------- */
@@ -211,7 +144,107 @@ main a[href^="mailto:"]:hover { color: #b7e8c3; }
   transition: margin-left 0.3s ease;
   margin-left: 60px;
 }
-
 .sidebar.open + .page-content {
   margin-left: 200px;
 }
+
+/* --------------------------- */
+/* Chat Box                    */
+/* --------------------------- */
+.chat-box {
+  width: 80%;
+  max-width: 600px;
+  height: 350px;
+  background: #202020;
+  border: 1px solid #1e6a50;
+  border-radius: 10px;
+  padding: 15px 20px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  color: #e6e6e6;
+  font-size: 16px;
+  box-shadow: 0 0 10px rgba(30, 106, 80, 0.25);
+  scrollbar-width: thin;
+  scrollbar-color: #1e6a50 #111;
+}
+
+.chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-box::-webkit-scrollbar-thumb {
+  background-color: #1e6a50;
+  border-radius: 6px;
+}
+.chat-box::-webkit-scrollbar-track {
+  background: #111;
+}
+
+.message {
+  margin-bottom: 12px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.message.user {
+  text-align: right;
+  color: #b7e8c3;
+  background: #0f3d2e;
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 10px 10px 0 10px;
+  max-width: 85%;
+  margin-left: auto;
+}
+
+.message.ai {
+  text-align: left;
+  color: #8fd19e;
+  background: #1a1a1a;
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 10px 10px 10px 0;
+  max-width: 85%;
+}
+
+/* --------------------------- */
+/* Chat Input Area             */
+/* --------------------------- */
+.chat-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.chat-input input[type="text"] {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 16px;
+  background: #2b2b2b;
+  color: #e6e6e6;
+  border: 1px solid #1e6a50;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.chat-input input[type="text"]:focus {
+  outline: none;
+  border-color: #2ea97b;
+  box-shadow: 0 0 6px rgba(46, 169, 123, 0.4);
+}
+
+.chat-input button {
+  padding: 12px 18px;
+  background: #165340;
+  border: none;
+  border-radius: 8px;
+  color: #e6e6e6;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.05s ease;
+}
+.chat-input button:hover { background: #1f7054; }
+.chat-input button:active { transform: translateY(1px); }
