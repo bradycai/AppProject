@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const response = document.getElementById("response");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   if (input && sendBtn && responseEl) {
     sendBtn.addEventListener("click", () => {
       const userText = input.value.trim();
@@ -46,6 +47,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (userText !== "") {
       response.textContent = `You said: ${userText}`;
       input.value = "";
+=======
+  // Handle "Send" button click
+  sendBtn.addEventListener("click", () => {
+    const userText = input.value.trim();
+
+    if (userText !== "") {
+      response.textContent = `You said: ${userText}`;
+      input.value = "";
+    }
+  });
+
+  // Allow pressing Enter to send
+  input.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      sendBtn.click();
+>>>>>>> parent of 28416a6 (ai functionality)
     }
   });
 
