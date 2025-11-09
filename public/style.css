@@ -11,6 +11,14 @@ html, body {
   color: #e6e6e6;
 }
 
+.chat-layout {
+  overflow: hidden;
+}
+
+.chat-box {
+  overflow-y: auto;
+}
+
 /* --------------------------- */
 /* Sidebar Styles              */
 /* --------------------------- */
